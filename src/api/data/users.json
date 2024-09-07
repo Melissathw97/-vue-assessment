@@ -1,0 +1,20 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "username": "petunia_rose",
+      "firstName": "Petunia",
+      "lastName": "Livingston",
+      "email": "petuniarose@mail.com",
+      "password": "password"
+    },
+    {
+      "id": "2",
+      "username": "catsgomeow",
+      "firstName": "Catarina",
+      "lastName": "Hollysworth",
+      "email": "cat_hollysworth@mail.com",
+      "password": "password"
+    }
+  ]
+}
