@@ -1,12 +1,16 @@
 <script setup lang="ts">
+import { storeToRefs } from "pinia"
 import { ref, onMounted } from "vue"
 import { RouterLink } from "vue-router"
 import useAuthStore from "@/stores/auth"
 import UserTable from "@/components/user/UserTable.vue"
 import ReusableButton from "@/components/ReusableButton.vue"
 
+const authStore = useAuthStore()
+const { getAllUsers } = authStore
+const { loggedInUser } = storeToRefs(authStore)
+
 const loading = ref<Boolean>(false)
-const { loggedInUser, getAllUsers } = useAuthStore()
 
 onMounted(() => {
   loading.value = true

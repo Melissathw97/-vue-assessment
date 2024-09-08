@@ -31,3 +31,11 @@ a:hover {
 .content-container {
   max-width: 1200px;
 }
+
+button {
+  transition: 0.4s;
+}
+
+button:not(:disabled) {
+  cursor: pointer;
+}

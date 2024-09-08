@@ -17,7 +17,7 @@ const useAuthStore = defineStore("auth", () => {
       })
   }
 
-  async function login({ username, password }: Partial<IUser>) {
+  const login = async ({ username, password }: Partial<IUser>) => {
     return userLogin({ username, password })
       .then((data: IUser) => {
         loggedInUser.value = data
@@ -27,7 +27,7 @@ const useAuthStore = defineStore("auth", () => {
       })
   }
 
-  async function register({ username, firstName, lastName, email, password }: Partial<IUser>) {
+  const register = async ({ username, firstName, lastName, email, password }: Partial<IUser>) => {
     return userRegister({ username, firstName, lastName, email, password })
       .then((data: IUser) => {
         loggedInUser.value = data
@@ -37,7 +37,11 @@ const useAuthStore = defineStore("auth", () => {
       })
   }
 
-  return { loggedInUser, allUsers, getAllUsers, login, register }
+  const logout = () => {
+    loggedInUser.value = undefined
+  }
+
+  return { loggedInUser, allUsers, getAllUsers, login, register, logout }
 })
 
 export default useAuthStore

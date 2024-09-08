@@ -21,10 +21,6 @@ button {
   transition: 0.4s;
 }
 
-button:not(:disabled) {
-  cursor: pointer;
-}
-
 button:not(:disabled):hover {
   background-color: rgba(255, 255, 255, 0.5);
   transform: translateY(-2px);
