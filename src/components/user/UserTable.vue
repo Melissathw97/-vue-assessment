@@ -44,7 +44,7 @@ const onDelete = (user) => {
         <td>{{ user.username }}</td>
         <td>{{ user.email }}</td>
         <td>
-          <ReusableButton label="Edit" :disabled="user.id === loggedInUser.id" />
+          <ReusableButton label="Edit" />
           <ReusableButton
             label="Delete"
             @click="() => onDelete(user)"

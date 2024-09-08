@@ -1,14 +1,25 @@
 <script setup lang="ts">
-defineProps({
+const emits = defineEmits(["click"])
+const props = defineProps({
   label: {
     type: String,
     required: true
+  },
+  disabled: {
+    type: Boolean,
+    default: false
   }
 })
+
+const onClick = () => {
+  if (!props.disabled) {
+    emits("click")
+  }
+}
 </script>
 
 <template>
-  <button class="button" v-bind="$attrs">{{ label }}</button>
+  <button class="button" v-bind="$attrs" @click="onClick" :disabled="disabled">{{ label }}</button>
 </template>
 
 <style scoped>
