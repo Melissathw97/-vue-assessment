@@ -1,20 +1,15 @@
-# vue-assessment
+# vue-assessment
 
-This template should help get you started developing with Vue 3 in Vite.
+Welcome to Melissa's vue project!
 
 ## Recommended IDE Setup
 
+For the best developer experience, do use VSCode with the Volar extension enabled.
 [VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
 
-## Type Support for `.vue` Imports in TS
-
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
 ## Project Setup
+
+To begin running the project, first install the packages using the command below:
 
 ```sh
 npm install
@@ -22,18 +17,18 @@ npm install
 
 ### Compile and Hot-Reload for Development
 
+Next, start the application in development mode.
+
 ```sh
 npm run dev
 ```
 
-### Type-Check, Compile and Minify for Production
+### Run json-server for user data
+
+Lastly, run the json-server to be able to fetch user data from the local `user.json` file
 
 ```sh
-npm run build
+json-server ./public/users.json
 ```
 
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
+## Happy assessing! ✨
