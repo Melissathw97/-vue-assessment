@@ -132,6 +132,7 @@ const onFormSubmit = () => {
 .form-wrapper {
   background-color: rgba(255, 255, 255, 0.5);
   width: 500px;
+  max-width: calc(100vw - 20px);
   margin: 50px auto;
   padding: 30px;
   text-align: center;

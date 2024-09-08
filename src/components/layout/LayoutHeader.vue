@@ -59,6 +59,10 @@ header {
   justify-content: space-between;
 }
 
+.user-wrapper {
+  position: relative;
+}
+
 .user-icon {
   height: 36px;
   width: 36px;
@@ -80,8 +84,8 @@ header {
 .user-modal {
   background: white;
   position: absolute;
-  top: 65px;
-  right: 20px;
+  top: 45px;
+  right: 0px;
   padding: 4px;
   width: 150px;
   border-radius: 5px;
