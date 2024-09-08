@@ -3,6 +3,7 @@ import { ref } from "vue"
 import { storeToRefs } from "pinia"
 import { RouterLink } from "vue-router"
 import useAuthStore from "@/stores/auth"
+import { HomeIcon } from "@heroicons/vue/24/solid"
 import { ChevronDownIcon } from "@heroicons/vue/24/outline"
 import ReusableButton from "@/components/ReusableButton.vue"
 
@@ -25,7 +26,7 @@ const onLogout = () => {
 <template>
   <header class="content-container">
     <RouterLink to="/">
-      <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="30" height="30" />
+      <HomeIcon class="home-icon" />
     </RouterLink>
 
     <div class="wrapper">
@@ -47,7 +48,7 @@ const onLogout = () => {
       </div>
 
       <div v-else>
-        <RouterLink to="/users/login">
+        <RouterLink to="/users/login" class="login-wrapper">
           <ReusableButton label="Log In" />
         </RouterLink>
       </div>
@@ -63,8 +64,23 @@ header {
   justify-content: space-between;
 }
 
+.home-icon {
+  color: rgb(197, 101, 27);
+  height: 30px;
+  width: 30px;
+  transition: 0.4s;
+
+  &:hover {
+    transform: translateY(-4px);
+  }
+}
+
 a {
   display: grid;
+}
+
+.login-wrapper {
+  text-decoration: none;
 }
 
 .user-wrapper {
