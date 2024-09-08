@@ -27,6 +27,9 @@ button:not(:disabled) {
 
 button:not(:disabled):hover {
   background-color: rgba(255, 255, 255, 0.5);
-  transform: translateY(-5px);
+  transform: translateY(-2px);
+  box-shadow:
+    0 4px 6px -1px rgb(0 0 0 / 0.1),
+    0 2px 4px -2px rgb(0 0 0 / 0.1);
 }
 </style>
