@@ -91,7 +91,7 @@ const onFormSubmit = () => {
 <template>
   <div class="form-wrapper">
     <form @submit.prevent="onFormSubmit">
-      <ReusableIconButton @click="onBackClick" type="button">
+      <ReusableIconButton @click="onBackClick" type="button" class="back-icon">
         <template v-slot:icon>
           <ArrowLeftIcon />
         </template>
@@ -138,6 +138,12 @@ const onFormSubmit = () => {
   text-align: center;
   border-radius: 10px;
   position: relative;
+}
+
+.back-icon {
+  position: absolute;
+  top: 35px;
+  left: 30px;
 }
 
 .form-fields {

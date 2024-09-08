@@ -7,4 +7,10 @@ interface IUser {
   email: String
 }
 
-export type { IUser }
+interface IUserList {
+  users: IUser[]
+  totalPages: Number
+  totalItems: Number
+}
+
+export type { IUser, IUserList }

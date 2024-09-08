@@ -1,12 +1,24 @@
 import axios from "axios"
-import type { IUser } from "@/types/user"
+import type { IUser, IUserList } from "@/types/user"
+import type { IPagination } from "@/types/pagination"
 
-const getUsers = (): Promise<IUser[]> => {
+const getUsers = ({ currentPage, displaySize }: IPagination): Promise<IUserList> => {
   return new Promise((resolve, reject) => {
     axios
       .get("http://localhost:3000/users")
       .then((response) => {
-        resolve(response.data)
+        const { data } = response
+
+        const startingIndex = (currentPage - 1) * displaySize
+        const endingIndex = currentPage * displaySize
+
+        const paginatedData = data.slice(startingIndex, endingIndex)
+
+        resolve({
+          users: paginatedData,
+          totalPages: Math.ceil(data.length / displaySize),
+          totalItems: data.length
+        })
       })
       .catch((error) => {
         reject(error)

@@ -1,6 +1,10 @@
 <script setup lang="ts">
 const emits = defineEmits(["click"])
 const props = defineProps({
+  size: {
+    type: String,
+    default: "md"
+  },
   disabled: {
     type: Boolean,
     default: false
@@ -15,7 +19,12 @@ const onClick = () => {
 </script>
 
 <template>
-  <button class="button" v-bind="$attrs" @click="onClick" :disabled="disabled">
+  <button
+    :class="['button', { [size]: true }]"
+    v-bind="$attrs"
+    @click="onClick"
+    :disabled="disabled"
+  >
     <slot name="icon"></slot>
   </button>
 </template>
@@ -26,18 +35,23 @@ button {
   border: none;
   height: 30px;
   width: 30px;
-  position: absolute;
-  top: 35px;
-  left: 30px;
   border-radius: 50%;
   padding: 5px;
-  cursor: pointer;
   transition: 0.4s;
+}
+
+.sm {
+  height: 25px;
+  width: 25px;
 }
 
 svg {
   height: 100%;
   width: 100%;
+}
+
+button:not(:disabled) {
+  cursor: pointer;
 }
 
 button:not(:disabled):hover {

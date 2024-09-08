@@ -23,6 +23,174 @@
       "lastName": "test",
       "email": "test@mail.com",
       "password": "test"
+    },
+    {
+      "id": "4",
+      "username": "hanifeo07",
+      "firstName": "Hanife",
+      "lastName": "Ormonde",
+      "email": "hanife@gmail.com",
+      "password": "password"
+    },
+    {
+      "id": "5",
+      "username": "crispy_chunky",
+      "firstName": "Annalise",
+      "lastName": "Crisp",
+      "email": "annacr@gmail.com",
+      "password": "password"
+    },
+    {
+      "id": "6",
+      "username": "jmthomas",
+      "firstName": "Jean-Marc",
+      "lastName": "Thomas",
+      "email": "jmthomas@mail.com",
+      "password": "password"
+    },
+    {
+      "id": "7",
+      "username": "camilla_scott03",
+      "firstName": "Camilla",
+      "lastName": "Scott",
+      "email": "camilla_scott03@mail.com",
+      "password": "password"
+    },
+    {
+      "id": "8",
+      "username": "allegragar",
+      "firstName": "Allegra",
+      "lastName": "Garland",
+      "email": "allegragar@mail.com",
+      "password": "password"
+    },
+    {
+      "id": "9",
+      "username": "tailler_h",
+      "firstName": "Henry",
+      "lastName": "Tailler",
+      "email": "tailler_h@mail.com",
+      "password": "password"
+    },
+    {
+      "id": "10",
+      "username": "virginia",
+      "firstName": "Virgie",
+      "lastName": "Ngô",
+      "email": "virginia@mail.com",
+      "password": "password"
+    },
+    {
+      "id": "11",
+      "username": "jayjayfortune",
+      "firstName": "Jaylee",
+      "lastName": "Fortune",
+      "email": "jayjayfortune@mail.com",
+      "password": "password"
+    },
+    {
+      "id": "12",
+      "username": "nickiewalt",
+      "firstName": "Nicole",
+      "lastName": "Walters",
+      "email": "nickiewalt@mail.com",
+      "password": "password"
+    },
+    {
+      "id": "13",
+      "username": "petunia_rose",
+      "firstName": "Petunia",
+      "lastName": "Livingston",
+      "email": "petuniarose@mail.com",
+      "password": "password"
+    },
+    {
+      "id": "14",
+      "username": "catsgomeow",
+      "firstName": "Catarina",
+      "lastName": "Hollysworth",
+      "email": "cat_hollysworth@mail.com",
+      "password": "password"
+    },
+    {
+      "id": "15",
+      "username": "test",
+      "firstName": "test",
+      "lastName": "test",
+      "email": "test@mail.com",
+      "password": "test"
+    },
+    {
+      "id": "16",
+      "username": "hanifeo07",
+      "firstName": "Hanife",
+      "lastName": "Ormonde",
+      "email": "hanife@gmail.com",
+      "password": "password"
+    },
+    {
+      "id": "17",
+      "username": "crispy_chunky",
+      "firstName": "Annalise",
+      "lastName": "Crisp",
+      "email": "annacr@gmail.com",
+      "password": "password"
+    },
+    {
+      "id": "18",
+      "username": "jmthomas",
+      "firstName": "Jean-Marc",
+      "lastName": "Thomas",
+      "email": "jmthomas@mail.com",
+      "password": "password"
+    },
+    {
+      "id": "19",
+      "username": "camilla_scott03",
+      "firstName": "Camilla",
+      "lastName": "Scott",
+      "email": "camilla_scott03@mail.com",
+      "password": "password"
+    },
+    {
+      "id": "20",
+      "username": "allegragar",
+      "firstName": "Allegra",
+      "lastName": "Garland",
+      "email": "allegragar@mail.com",
+      "password": "password"
+    },
+    {
+      "id": "21",
+      "username": "tailler_h",
+      "firstName": "Henry",
+      "lastName": "Tailler",
+      "email": "tailler_h@mail.com",
+      "password": "password"
+    },
+    {
+      "id": "22",
+      "username": "virginia",
+      "firstName": "Virgie",
+      "lastName": "Ngô",
+      "email": "virginia@mail.com",
+      "password": "password"
+    },
+    {
+      "id": "23",
+      "username": "jayjayfortune",
+      "firstName": "Jaylee",
+      "lastName": "Fortune",
+      "email": "jayjayfortune@mail.com",
+      "password": "password"
+    },
+    {
+      "id": "24",
+      "username": "nickiewalt",
+      "firstName": "Nicole",
+      "lastName": "Walters",
+      "email": "nickiewalt@mail.com",
+      "password": "password"
     }
   ]
 }

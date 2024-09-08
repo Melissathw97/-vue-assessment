@@ -1,16 +1,20 @@
 import { ref } from "vue"
 import { defineStore } from "pinia"
-import type { IUser } from "@/types/user"
+import type { IUser, IUserList } from "@/types/user"
+import type { IPagination } from "@/types/pagination"
 import { getUsers, getUser, userLogin, userRegister, userUpdate, userDelete } from "@/api"
 
 const useAuthStore = defineStore("auth", () => {
   const allUsers = ref<IUser[]>()
   const loggedInUser = ref<IUser>()
 
-  const getAllUsers = async () => {
-    return getUsers()
-      .then((data: IUser[]) => {
-        allUsers.value = data
+  const getAllUsers = async ({ currentPage, displaySize }: IPagination) => {
+    return getUsers({ currentPage, displaySize })
+      .then((data: IUserList) => {
+        const { users, ...paginationData } = data
+        allUsers.value = users
+
+        return { ...paginationData }
       })
       .catch((error) => {
         throw new Error(error)
