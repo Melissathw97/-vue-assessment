@@ -14,6 +14,11 @@ const showModal = ref<Boolean>(false)
 const toggleModal = () => {
   showModal.value = !showModal.value
 }
+
+const onLogout = () => {
+  logout()
+  showModal.value = false
+}
 </script>
 
 <template>
@@ -30,7 +35,7 @@ const toggleModal = () => {
 
         <!-- User Action Modal -->
         <div class="user-modal" v-if="showModal">
-          <button @click="logout">Log Out</button>
+          <button @click="onLogout">Log Out</button>
         </div>
       </div>
 
