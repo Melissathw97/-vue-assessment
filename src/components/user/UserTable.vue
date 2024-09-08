@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import useAuthStore from "@/stores/auth"
+import ReusableChip from "@/components/ReusableChip.vue"
 import ReusableButton from "@/components/ReusableButton.vue"
 
 const { allUsers, loggedInUser } = useAuthStore()
@@ -20,7 +21,9 @@ const { allUsers, loggedInUser } = useAuthStore()
       <tr v-for="user in allUsers" :key="user.id">
         <td>
           {{ user.firstName }}
-          <div v-if="user.id === loggedInUser.id" class="chip">You</div>
+          <template v-if="user.id === loggedInUser.id">
+            <ReusableChip label="You" />
+          </template>
         </td>
         <td>{{ user.lastName }}</td>
         <td>{{ user.username }}</td>
@@ -56,15 +59,5 @@ td {
 td:last-of-type {
   display: flex;
   gap: 5px;
-}
-
-.chip {
-  background: lightseagreen;
-  border-radius: 2px;
-  font-size: 10px;
-  font-weight: bold;
-  color: white;
-  display: inline-block;
-  padding: 2px 4px;
 }
 </style>
