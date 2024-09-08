@@ -3,6 +3,7 @@ import { ref } from "vue"
 import { storeToRefs } from "pinia"
 import { RouterLink } from "vue-router"
 import useAuthStore from "@/stores/auth"
+import { ChevronDownIcon } from "@heroicons/vue/24/outline"
 import ReusableButton from "@/components/ReusableButton.vue"
 
 const authStore = useAuthStore()
@@ -29,8 +30,11 @@ const onLogout = () => {
 
     <div class="wrapper">
       <div v-if="loggedInUser" class="user-wrapper">
-        <div class="user-icon" @click="toggleModal">
-          {{ loggedInUser.username[0] }}
+        <div class="toggle-wrapper" @click="toggleModal">
+          <div class="user-icon">
+            {{ loggedInUser.username[0] }}
+          </div>
+          <ChevronDownIcon />
         </div>
 
         <!-- User Action Modal -->
@@ -59,26 +63,43 @@ header {
   justify-content: space-between;
 }
 
+a {
+  display: grid;
+}
+
 .user-wrapper {
   position: relative;
 }
 
+.toggle-wrapper {
+  display: flex;
+  align-items: center;
+  padding: 4px 6px;
+  gap: 4px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: 0.4s;
+
+  svg {
+    height: 16px;
+    width: 16px;
+    color: white;
+  }
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+  }
+}
+
 .user-icon {
-  height: 36px;
-  width: 36px;
+  height: 30px;
+  width: 30px;
   background: rgba(255, 255, 255, 0.8);
   border-radius: 50%;
   display: grid;
   place-items: center;
   text-transform: uppercase;
-  cursor: pointer;
   user-select: none;
-
-  &:hover {
-    box-shadow:
-      0 4px 6px -1px rgb(0 0 0 / 0.1),
-      0 2px 4px -2px rgb(0 0 0 / 0.1);
-  }
 }
 
 .user-modal {
