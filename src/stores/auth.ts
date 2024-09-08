@@ -1,7 +1,7 @@
 import { ref } from "vue"
 import { defineStore } from "pinia"
 import type { IUser } from "@/types/user"
-import { getUsers, userLogin, userRegister } from "@/api"
+import { getUsers, userLogin, userRegister, userDelete } from "@/api"
 
 const useAuthStore = defineStore("auth", () => {
   const allUsers = ref<IUser[]>()
@@ -41,7 +41,17 @@ const useAuthStore = defineStore("auth", () => {
     loggedInUser.value = undefined
   }
 
-  return { loggedInUser, allUsers, getAllUsers, login, register, logout }
+  const deleteUser = async (user: IUser) => {
+    return userDelete(user)
+      .then(() => {
+        getAllUsers()
+      })
+      .catch((error) => {
+        throw new Error(error)
+      })
+  }
+
+  return { loggedInUser, allUsers, getAllUsers, login, register, logout, deleteUser }
 })
 
 export default useAuthStore

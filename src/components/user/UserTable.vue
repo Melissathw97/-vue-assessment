@@ -1,9 +1,24 @@
 <script setup lang="ts">
+import { storeToRefs } from "pinia"
 import useAuthStore from "@/stores/auth"
 import ReusableChip from "@/components/ReusableChip.vue"
 import ReusableButton from "@/components/ReusableButton.vue"
 
-const { allUsers, loggedInUser } = useAuthStore()
+const authStore = useAuthStore()
+const { allUsers } = storeToRefs(authStore)
+const { loggedInUser, deleteUser } = authStore
+
+const onDelete = (user) => {
+  if (confirm(`Are you sure you wish to delete ${user.username}?`)) {
+    deleteUser(user)
+      .then(() => {
+        alert(`${user.username} deleted successfully!`)
+      })
+      .catch((error) => {
+        alert(error.message)
+      })
+  }
+}
 </script>
 
 <template>
@@ -30,7 +45,11 @@ const { allUsers, loggedInUser } = useAuthStore()
         <td>{{ user.email }}</td>
         <td>
           <ReusableButton label="Edit" :disabled="user.id === loggedInUser.id" />
-          <ReusableButton label="Delete" :disabled="user.id === loggedInUser.id" />
+          <ReusableButton
+            label="Delete"
+            @click="() => onDelete(user)"
+            :disabled="user.id === loggedInUser.id"
+          />
         </td>
       </tr>
     </tbody>

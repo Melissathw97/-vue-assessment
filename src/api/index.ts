@@ -43,10 +43,11 @@ const userRegister = ({
   password = ""
 }: Partial<IUser>): Promise<IUser> => {
   return new Promise((resolve, reject) => {
-    try {
-      axios.get("http://localhost:3000/users").then((response) => {
+    axios
+      .get("http://localhost:3000/users")
+      .then(async (response) => {
         const newUser: IUser = {
-          id: (response.data.length + 1).toString(),
+          id: response.data.length + 1,
           username,
           firstName,
           lastName,
@@ -54,14 +55,24 @@ const userRegister = ({
           password
         }
 
-        axios.post("http://localhost:3000/users", newUser).then((response) => {
-          resolve(newUser)
-        })
+        await axios.post("http://localhost:3000/users", newUser)
+        resolve(newUser)
       })
-    } catch (error) {
-      reject(error)
-    }
+      .catch((error) => {
+        reject(error)
+      })
   })
 }
 
-export { getUsers, userLogin, userRegister }
+const userDelete = (user: IUser): Promise<void> => {
+  return new Promise((resolve, reject) => {
+    axios({
+      method: "DELETE",
+      url: "http://localhost:3000/users/" + user.id
+    })
+      .then(() => resolve())
+      .catch((error) => reject(error))
+  })
+}
+
+export { getUsers, userLogin, userRegister, userDelete }
