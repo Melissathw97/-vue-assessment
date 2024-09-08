@@ -26,9 +26,9 @@ const onDelete = (user) => {
   <table>
     <thead>
       <tr>
+        <th>Username</th>
         <th>First Name</th>
         <th>Last Name</th>
-        <th>Username</th>
         <th>E-mail</th>
         <th></th>
       </tr>
@@ -36,13 +36,13 @@ const onDelete = (user) => {
     <tbody>
       <tr v-for="user in allUsers" :key="user.id">
         <td>
-          {{ user.firstName }}
+          {{ user.username }}
           <template v-if="user.id === loggedInUser.id">
             <ReusableChip label="You" />
           </template>
         </td>
+        <td>{{ user.firstName }}</td>
         <td>{{ user.lastName }}</td>
-        <td>{{ user.username }}</td>
         <td>{{ user.email }}</td>
         <td>
           <RouterLink :to="`/users/${user.id}/edit`">
