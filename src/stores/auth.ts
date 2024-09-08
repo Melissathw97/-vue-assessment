@@ -1,10 +1,21 @@
 import { ref } from "vue"
-import { userLogin } from "@/api"
 import { defineStore } from "pinia"
 import type { IUser } from "@/types/user"
+import { getUsers, userLogin, userRegister } from "@/api"
 
 const useAuthStore = defineStore("auth", () => {
+  const allUsers = ref<IUser[]>()
   const loggedInUser = ref<IUser>()
+
+  const getAllUsers = async () => {
+    return getUsers()
+      .then((data: IUser[]) => {
+        allUsers.value = data
+      })
+      .catch((error) => {
+        throw new Error(error)
+      })
+  }
 
   async function login({ username, password }: Partial<IUser>) {
     return userLogin({ username, password })
@@ -16,7 +27,17 @@ const useAuthStore = defineStore("auth", () => {
       })
   }
 
-  return { loggedInUser, login }
+  async function register({ username, firstName, lastName, email, password }: Partial<IUser>) {
+    return userRegister({ username, firstName, lastName, email, password })
+      .then((data: IUser) => {
+        loggedInUser.value = data
+      })
+      .catch((error) => {
+        throw new Error(error)
+      })
+  }
+
+  return { loggedInUser, allUsers, getAllUsers, login, register }
 })
 
 export default useAuthStore
