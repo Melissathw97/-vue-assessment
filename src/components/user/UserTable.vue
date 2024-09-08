@@ -14,6 +14,8 @@ const { allUsers } = storeToRefs(authStore)
 const { getAllUsers, loggedInUser, deleteUser } = authStore
 
 const loading = ref<Boolean>(false)
+const searchValue = ref<String>("")
+
 const currentPage = ref<Number>(1)
 const displaySize = ref<Number>(10)
 const totalPages = ref<Number>(0)
@@ -37,7 +39,11 @@ onMounted(() => {
 
 const getList = () => {
   loading.value = true
-  getAllUsers({ currentPage: currentPage.value, displaySize: displaySize.value })
+  getAllUsers({
+    filter: searchValue.value,
+    currentPage: currentPage.value,
+    displaySize: displaySize.value
+  })
     .then((data: Partial<IUserList>) => {
       totalItems.value = data.totalItems
       totalPages.value = data.totalPages
@@ -71,9 +77,15 @@ const onDelete = (user) => {
     <div class="title-wrapper">
       <h3>All Users</h3>
 
-      <RouterLink to="/users/create">
-        <ReusableButton label="Create User" />
-      </RouterLink>
+      <div class="action-wrapper">
+        <form class="search-form" @submit.prevent="getList">
+          <input placeholder="Search" v-model="searchValue" />
+          <ReusableButton label="Search" />
+        </form>
+        <RouterLink to="/users/create">
+          <ReusableButton label="Create User" />
+        </RouterLink>
+      </div>
     </div>
 
     <div v-if="loading" class="loader-wrapper">Loading...</div>
@@ -153,6 +165,19 @@ const onDelete = (user) => {
 
 h3 {
   font-weight: bold;
+}
+
+.action-wrapper,
+.search-form {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+input {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
 }
 
 table {

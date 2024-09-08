@@ -1,15 +1,15 @@
 import { ref } from "vue"
 import { defineStore } from "pinia"
+import type { IFilter } from "@/types/filter"
 import type { IUser, IUserList } from "@/types/user"
-import type { IPagination } from "@/types/pagination"
 import { getUsers, getUser, userLogin, userRegister, userUpdate, userDelete } from "@/api"
 
 const useAuthStore = defineStore("auth", () => {
   const allUsers = ref<IUser[]>()
   const loggedInUser = ref<IUser>()
 
-  const getAllUsers = async ({ currentPage, displaySize }: IPagination) => {
-    return getUsers({ currentPage, displaySize })
+  const getAllUsers = async ({ filter, currentPage, displaySize }: IFilter) => {
+    return getUsers({ filter, currentPage, displaySize })
       .then((data: IUserList) => {
         const { users, ...paginationData } = data
         allUsers.value = users
@@ -74,7 +74,7 @@ const useAuthStore = defineStore("auth", () => {
   const deleteUser = async (user: IUser) => {
     return userDelete(user)
       .then(() => {
-        getAllUsers()
+        getAllUsers({})
       })
       .catch((error) => {
         throw new Error(error)

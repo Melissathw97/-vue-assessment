@@ -1,13 +1,29 @@
 import axios from "axios"
+import type { IFilter } from "@/types/filter"
 import type { IUser, IUserList } from "@/types/user"
-import type { IPagination } from "@/types/pagination"
 
-const getUsers = ({ currentPage, displaySize }: IPagination): Promise<IUserList> => {
+const getUsers = ({ filter, currentPage, displaySize }: IFilter): Promise<IUserList> => {
   return new Promise((resolve, reject) => {
     axios
       .get("http://localhost:3000/users")
       .then((response) => {
-        const { data } = response
+        let data = response.data
+
+        if (filter) {
+          data = response.data.filter((user: IUser) => {
+            const fieldsToCheck: (keyof IUser)[] = ["username", "firstName", "lastName", "email"]
+
+            for (let i = 0; i < fieldsToCheck.length; i++) {
+              const field = fieldsToCheck[i]
+
+              if (user[field].toLowerCase().includes(filter.toLowerCase())) {
+                return true
+              }
+            }
+
+            return false
+          })
+        }
 
         const startingIndex = (currentPage - 1) * displaySize
         const endingIndex = currentPage * displaySize
