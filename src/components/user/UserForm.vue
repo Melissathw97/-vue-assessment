@@ -51,6 +51,10 @@ switch (currentRouteName) {
     formTitle.value = "Register"
     isFullForm.value = true
     break
+  case "create":
+    formTitle.value = "Create User"
+    isFullForm.value = true
+    break
   case "edit":
     formTitle.value = "Update Profile"
     isFullForm.value = true

@@ -23,6 +23,14 @@ const onDelete = (user) => {
 </script>
 
 <template>
+  <div class="title-wrapper">
+    <h3>All Users</h3>
+
+    <RouterLink to="/users/create">
+      <ReusableButton label="Create User" />
+    </RouterLink>
+  </div>
+
   <table>
     <thead>
       <tr>
@@ -60,6 +68,17 @@ const onDelete = (user) => {
 </template>
 
 <style scoped>
+.title-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10px 10px;
+}
+
+h3 {
+  font-weight: bold;
+}
+
 table {
   width: 100%;
 }
@@ -75,7 +94,7 @@ th {
 }
 
 td {
-  background: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.7);
 }
 
 td:last-of-type {

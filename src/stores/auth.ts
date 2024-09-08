@@ -51,6 +51,14 @@ const useAuthStore = defineStore("auth", () => {
     loggedInUser.value = undefined
   }
 
+  const createUser = async ({ username, firstName, lastName, email, password }: Partial<IUser>) => {
+    return userRegister({ username, firstName, lastName, email, password })
+      .then(() => {})
+      .catch((error) => {
+        throw new Error(error)
+      })
+  }
+
   const updateUser = async (user: IUser) => {
     return userUpdate(user)
       .then(() => {})
@@ -77,6 +85,7 @@ const useAuthStore = defineStore("auth", () => {
     login,
     register,
     logout,
+    createUser,
     updateUser,
     deleteUser
   }

@@ -61,7 +61,7 @@ const userRegister = ({
       .get("http://localhost:3000/users")
       .then(async (response) => {
         const newUser: IUser = {
-          id: response.data.length + 1,
+          id: (Number(response.data.at(-1).id) + 1).toString(),
           username,
           firstName,
           lastName,

@@ -51,7 +51,7 @@ onMounted(() => {
 <style scoped>
 .content-container {
   text-align: center;
-  padding: 60px 20px;
+  padding: 50px 20px;
   display: flex;
   flex-direction: column;
   gap: 30px;
