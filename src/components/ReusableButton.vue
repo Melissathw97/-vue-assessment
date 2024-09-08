@@ -8,6 +8,10 @@ const props = defineProps({
   disabled: {
     type: Boolean,
     default: false
+  },
+  iconOnly: {
+    type: Boolean,
+    default: false
   }
 })
 
@@ -19,7 +23,17 @@ const onClick = () => {
 </script>
 
 <template>
-  <button class="button" v-bind="$attrs" @click="onClick" :disabled="disabled">{{ label }}</button>
+  <button
+    :class="['button', { icon: iconOnly }]"
+    v-bind="$attrs"
+    @click="onClick"
+    :disabled="disabled"
+  >
+    <slot v-if="iconOnly" name="icon"></slot>
+    <span v-else>
+      {{ label }}
+    </span>
+  </button>
 </template>
 
 <style scoped>
@@ -30,6 +44,11 @@ button {
   border-radius: 5px;
   font-weight: 600;
   transition: 0.4s;
+}
+
+.icon {
+  padding: 7px 10px;
+  display: grid;
 }
 
 button:not(:disabled):hover {

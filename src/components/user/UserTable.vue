@@ -4,6 +4,7 @@ import { storeToRefs } from "pinia"
 import { RouterLink } from "vue-router"
 import useAuthStore from "@/stores/auth"
 import type { IUserList } from "@/types/user"
+import { MagnifyingGlassIcon } from "@heroicons/vue/24/outline"
 
 import ReusableChip from "@/components/ReusableChip.vue"
 import ReusableButton from "@/components/ReusableButton.vue"
@@ -80,10 +81,14 @@ const onDelete = (user) => {
       <div class="action-wrapper">
         <form class="search-form" @submit.prevent="getList">
           <input placeholder="Search" v-model="searchValue" />
-          <ReusableButton label="Search" />
+          <ReusableButton label="Search" iconOnly>
+            <template v-slot:icon>
+              <MagnifyingGlassIcon class="search-icon" />
+            </template>
+          </ReusableButton>
         </form>
         <RouterLink to="/users/create">
-          <ReusableButton label="Create User" />
+          <ReusableButton label="Create User" class="create-user-button" />
         </RouterLink>
       </div>
     </div>
@@ -153,10 +158,17 @@ const onDelete = (user) => {
 }
 
 .title-wrapper {
+  position: relative;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
+  gap: 10px;
   padding: 0 10px 10px;
+}
+
+.create-user-button {
+  position: absolute;
+  top: 0;
+  right: 10px;
 }
 
 .loader-wrapper {
@@ -165,19 +177,35 @@ const onDelete = (user) => {
 
 h3 {
   font-weight: bold;
+  text-align: left;
+  padding: 10px 0;
+}
+
+.action-wrapper {
+  width: 100%;
 }
 
 .action-wrapper,
 .search-form {
   display: flex;
   align-items: center;
+}
+
+.search-form {
+  flex-grow: 1;
   gap: 6px;
+}
+
+.search-icon {
+  height: 18px;
+  width: 18px;
 }
 
 input {
   padding: 10px;
   border: none;
   border-radius: 5px;
+  flex-grow: 1;
 }
 
 table {
@@ -201,5 +229,22 @@ td {
 td:last-of-type {
   display: flex;
   gap: 5px;
+}
+
+@media (min-width: 640px) {
+  .title-wrapper {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .action-wrapper {
+    width: unset;
+    gap: 6px;
+  }
+
+  .create-user-button {
+    position: static;
+  }
 }
 </style>
