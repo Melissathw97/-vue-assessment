@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { storeToRefs } from "pinia"
+import { RouterLink } from "vue-router"
 import useAuthStore from "@/stores/auth"
 import ReusableChip from "@/components/ReusableChip.vue"
 import ReusableButton from "@/components/ReusableButton.vue"
@@ -44,7 +45,9 @@ const onDelete = (user) => {
         <td>{{ user.username }}</td>
         <td>{{ user.email }}</td>
         <td>
-          <ReusableButton label="Edit" />
+          <RouterLink :to="`/users/${user.id}/edit`">
+            <ReusableButton label="Edit" />
+          </RouterLink>
           <ReusableButton
             label="Delete"
             @click="() => onDelete(user)"

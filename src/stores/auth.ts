@@ -1,7 +1,7 @@
 import { ref } from "vue"
 import { defineStore } from "pinia"
 import type { IUser } from "@/types/user"
-import { getUsers, userLogin, userRegister, userDelete } from "@/api"
+import { getUsers, getUser, userLogin, userRegister, userUpdate, userDelete } from "@/api"
 
 const useAuthStore = defineStore("auth", () => {
   const allUsers = ref<IUser[]>()
@@ -11,6 +11,16 @@ const useAuthStore = defineStore("auth", () => {
     return getUsers()
       .then((data: IUser[]) => {
         allUsers.value = data
+      })
+      .catch((error) => {
+        throw new Error(error)
+      })
+  }
+
+  const getUserById = async (userId: Number) => {
+    return getUser(userId)
+      .then((data: IUser) => {
+        return data
       })
       .catch((error) => {
         throw new Error(error)
@@ -41,6 +51,14 @@ const useAuthStore = defineStore("auth", () => {
     loggedInUser.value = undefined
   }
 
+  const updateUser = async (user: IUser) => {
+    return userUpdate(user)
+      .then(() => {})
+      .catch((error) => {
+        throw new Error(error)
+      })
+  }
+
   const deleteUser = async (user: IUser) => {
     return userDelete(user)
       .then(() => {
@@ -51,7 +69,17 @@ const useAuthStore = defineStore("auth", () => {
       })
   }
 
-  return { loggedInUser, allUsers, getAllUsers, login, register, logout, deleteUser }
+  return {
+    loggedInUser,
+    allUsers,
+    getAllUsers,
+    getUserById,
+    login,
+    register,
+    logout,
+    updateUser,
+    deleteUser
+  }
 })
 
 export default useAuthStore

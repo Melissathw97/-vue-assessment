@@ -1,7 +1,17 @@
 <script setup lang="ts">
-import { ref } from "vue"
+import { ref, onMounted } from "vue"
 import { useRouter } from "vue-router"
+import type { IUser } from "@/types/user"
+import { ArrowLeftIcon } from "@heroicons/vue/16/solid"
 import ReusableButton from "@/components/ReusableButton.vue"
+import ReusableIconButton from "@/components/ReusableIconButton.vue"
+
+const props = defineProps({
+  user: {
+    type: Object<IUser>,
+    required: false
+  }
+})
 
 const formTitle = ref<String>("")
 const isFullForm = ref<Boolean>(false)
@@ -14,6 +24,18 @@ const password = ref<String>("")
 
 const emits = defineEmits(["submit"])
 const router = useRouter()
+
+onMounted(() => {
+  const { user } = props
+
+  if (user) {
+    username.value = user.username
+    firstName.value = user.firstName
+    lastName.value = user.lastName
+    email.value = user.email
+    password.value = user.password
+  }
+})
 
 const {
   currentRoute: {
@@ -29,8 +51,16 @@ switch (currentRouteName) {
     formTitle.value = "Register"
     isFullForm.value = true
     break
+  case "edit":
+    formTitle.value = "Update Profile"
+    isFullForm.value = true
+    break
   default:
     break
+}
+
+const onBackClick = () => {
+  router.back()
 }
 
 const isButtonDisabled = () => {
@@ -57,6 +87,11 @@ const onFormSubmit = () => {
 <template>
   <div class="form-wrapper">
     <form @submit.prevent="onFormSubmit">
+      <ReusableIconButton @click="onBackClick" type="button">
+        <template v-slot:icon>
+          <ArrowLeftIcon />
+        </template>
+      </ReusableIconButton>
       <h1>{{ formTitle }}</h1>
 
       <div class="form-fields">
@@ -74,16 +109,18 @@ const onFormSubmit = () => {
           <input id="email" v-model="email" />
         </template>
 
-        <label for="username">Password</label>
-        <input id="password" v-model="password" type="password" />
+        <template v-if="currentRouteName !== 'edit'">
+          <label for="username">Password</label>
+          <input id="password" v-model="password" type="password" />
+        </template>
       </div>
 
       <ReusableButton :label="formTitle" :disabled="isButtonDisabled()" />
     </form>
 
-    <hr class="divider" />
+    <hr class="divider" v-if="$slots.default" />
 
-    <slot></slot>
+    <slot> </slot>
   </div>
 </template>
 
@@ -94,6 +131,8 @@ const onFormSubmit = () => {
   margin: 50px auto;
   padding: 30px;
   text-align: center;
+  border-radius: 10px;
+  position: relative;
 }
 
 .form-fields {

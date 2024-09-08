@@ -35,6 +35,9 @@ const onLogout = () => {
 
         <!-- User Action Modal -->
         <div class="user-modal" v-if="showModal">
+          <RouterLink :to="`/users/${loggedInUser.id}/edit`">
+            <button>Update Profile</button>
+          </RouterLink>
           <button @click="onLogout">Log Out</button>
         </div>
       </div>
@@ -59,7 +62,7 @@ header {
 .user-icon {
   height: 36px;
   width: 36px;
-  background: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.8);
   border-radius: 50%;
   display: grid;
   place-items: center;
@@ -80,13 +83,19 @@ header {
   top: 65px;
   right: 20px;
   padding: 4px;
-  width: 100px;
+  width: 150px;
   border-radius: 5px;
   text-align: center;
 
+  a {
+    display: block;
+    width: 100%;
+    padding: 0;
+  }
+
   button {
     width: 100%;
-    padding: 6px 0;
+    padding: 8px 0;
     border-radius: 3px;
     border: none;
     background-color: transparent;

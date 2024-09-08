@@ -3,13 +3,27 @@ import type { IUser } from "@/types/user"
 
 const getUsers = (): Promise<IUser[]> => {
   return new Promise((resolve, reject) => {
-    try {
-      axios.get("http://localhost:3000/users").then((response) => {
+    axios
+      .get("http://localhost:3000/users")
+      .then((response) => {
         resolve(response.data)
       })
-    } catch (error) {
-      reject(error)
-    }
+      .catch((error) => {
+        reject(error)
+      })
+  })
+}
+
+const getUser = (userId: Number): Promise<IUser> => {
+  return new Promise((resolve, reject) => {
+    axios
+      .get(`http://localhost:3000/users/${userId}`)
+      .then((response) => {
+        resolve(response.data)
+      })
+      .catch((error) => {
+        reject(error)
+      })
   })
 }
 
@@ -64,6 +78,18 @@ const userRegister = ({
   })
 }
 
+const userUpdate = (user: IUser): Promise<void> => {
+  return new Promise((resolve, reject) => {
+    axios({
+      method: "PATCH",
+      url: "http://localhost:3000/users/" + user.id,
+      data: user
+    })
+      .then(() => resolve())
+      .catch((error) => reject(error))
+  })
+}
+
 const userDelete = (user: IUser): Promise<void> => {
   return new Promise((resolve, reject) => {
     axios({
@@ -75,4 +101,4 @@ const userDelete = (user: IUser): Promise<void> => {
   })
 }
 
-export { getUsers, userLogin, userRegister, userDelete }
+export { getUsers, getUser, userLogin, userRegister, userUpdate, userDelete }

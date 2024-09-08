@@ -1,7 +1,7 @@
 {
   "users": [
     {
-      "id": 1,
+      "id": "1",
       "username": "petunia_rose",
       "firstName": "Petunia",
       "lastName": "Livingston",
@@ -9,7 +9,7 @@
       "password": "password"
     },
     {
-      "id": 2,
+      "id": "2",
       "username": "catsgomeow",
       "firstName": "Catarina",
       "lastName": "Hollysworth",
@@ -17,7 +17,7 @@
       "password": "password"
     },
     {
-      "id": 3,
+      "id": "3",
       "username": "test",
       "firstName": "test",
       "lastName": "test",
