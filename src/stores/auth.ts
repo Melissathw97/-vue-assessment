@@ -73,9 +73,7 @@ const useAuthStore = defineStore("auth", () => {
 
   const deleteUser = async (user: IUser) => {
     return userDelete(user)
-      .then(() => {
-        getAllUsers({})
-      })
+      .then(() => {})
       .catch((error) => {
         throw new Error(error)
       })
