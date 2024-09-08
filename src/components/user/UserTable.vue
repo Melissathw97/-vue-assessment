@@ -64,6 +64,7 @@ const onDelete = (user) => {
   if (confirm(`Are you sure you wish to delete ${user.username}?`)) {
     deleteUser(user)
       .then(() => {
+        getList()
         alert(`${user.username} deleted successfully!`)
       })
       .catch((error) => {
